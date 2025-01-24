@@ -5,7 +5,14 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./input": "./src/input.tsx",
+    "./label": "./src/label.tsx",
+    "./separator": "./src/separator.tsx",
+    "./tabs": "./src/tabs.tsx",
+    "./tabs-content": "./src/tabs-content.tsx",
+    "./tabs-list": "./src/tabs-list.tsx",
+    "./tabs-trigger": "./src/tabs-trigger.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -22,6 +29,10 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-separator": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
