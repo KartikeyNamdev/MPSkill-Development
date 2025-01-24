@@ -1,84 +1,211 @@
-# Turborepo starter
+# Skill Development Platform Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+This repository is a monorepo for a skill development platform built using **npm workspaces** and **Turborepo**. It includes two Next.js projects:
 
-## Using this example
+1. **UserApp**: A web application for students to apply for courses and jobs.
+2. **JobProviders**: A web application for job providers to post job opportunities and manage applicants.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## Folder Structure
+
+```
+root/
+|-- apps/
+|   |-- userapp/         # Next.js project for students
+|   |-- docs/    # Next.js project for job providers
+|
+|-- packages/
+|    |-- shared/          # Shared utilities and components
+|    |-- db/
+|    |-- ui/
+|-- .turbo                # Turborepo cache
+|-- package.json         # Root package.json defining workspaces
+|-- turbo.json           # Turborepo configuration
+```  
+
+---
+
+## Prerequisites
+
+- **Node.js** (v16 or above)
+- **npm** (v8 or above)
+- Familiarity with Next.js and Turborepo
+
+---
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+---
+
+## Commands
+
+### Development
+
+To run both apps in development mode:
+```bash
+npm run dev
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `Userapp`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `Userapp` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+To run an individual app:
+```bash
+cd apps/userapp
+npm run dev
+# OR
+cd apps/docs
+npm run dev
+```
 
 ### Build
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+To build all apps:
+```bash
+npm run build
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+To build an individual app:
+```bash
+cd apps/userapp
+npm run build
+# OR
+cd apps/docs
+npm run build
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Lint
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+To lint all apps:
+```bash
+npm run lint
 ```
-npx turbo link
+
+To lint an individual app:
+```bash
+cd apps/userapp
+npm run lint
+# OR
+cd apps/docs
+npm run lint
 ```
 
-## Useful Links
+---
 
-Learn more about the power of Turborepo:
+## Turborepo Configuration
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Turborepo is used for efficient builds and caching.
+
+- **`turbo.json`**:
+```json
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false
+    }
+  }
+}
+```
+
+---
+
+## Shared Components and Utilities
+
+Shared logic and components (e.g., form validators, UI components) are located in the `packages/shared` directory.
+
+To use shared utilities or components:
+```javascript
+import { SomeComponent } from '@shared/components';
+```
+
+---
+
+## Scripts in Root `package.json`
+
+```json
+{
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
+```
+
+---
+
+## Individual Project Details
+
+### **UserApp**
+Path: `apps/userapp`
+
+- **Features**:
+  - Browse and apply for courses
+  - Apply for job opportunities
+  - Track application status
+
+- **Scripts**:
+  ```json
+  {
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    }
+  }
+  ```
+
+---
+
+### **JobProviders**
+Path: `apps/docs`
+
+- **Features**:
+  - Post job opportunities
+  - Manage applicants
+  - Track job postings
+
+- **Scripts**:
+  ```json
+  {
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    }
+  }
+  ```
+
+---
+
+## Contribution
+
+1. Fork the repository.
+2. Create a new branch.
+3. Commit your changes.
+4. Open a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
