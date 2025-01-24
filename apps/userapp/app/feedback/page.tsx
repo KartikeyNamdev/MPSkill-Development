@@ -1,3 +1,3 @@
 export default function feedback() {
-  return di;
+  return <div>Feedback</div>;
 }
