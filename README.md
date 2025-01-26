@@ -103,6 +103,7 @@ npm run lint
 
 ## Turborepo Configuration
 
+<<<<<<< HEAD
 Turborepo is used for efficient builds and caching.
 
 - **`turbo.json`**:
@@ -209,3 +210,14 @@ Path: `apps/docs`
 ## License
 
 This project is licensed under the MIT License.
+=======
+- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+  ////
+  docker run -e POSTGRES_PASSWORD=kartikey -d -p 5432:5432 postgres
+  url : postgresql://postgres:kartikey@localhost:5432/postgres
+>>>>>>> 7ddd839 (Added feedbackpage)
