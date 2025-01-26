@@ -20,20 +20,13 @@
 //     </div>
 //   );
 // }
-import Image from "next/image";
-import { Button } from "@/repo/ui/button";
+import { Button } from "@repo/ui/button";
 import { BadgeCheck, Book, MessageSquare, Users } from "lucide-react";
 
 export default function Page() {
   return (
     <div className="min-h-screen bg-white">
       {/* Announcement Bar */}
-      <div className="w-full bg-purple-100 py-2 text-center text-sm text-purple-700">
-        <span className="flex items-center justify-center gap-2">
-          <BadgeCheck className="h-4 w-4" /> Our certificates are now "Powered
-          by Wipro DICE.iD"
-        </span>
-      </div>
 
       {/* Navigation */}
       <nav className="border-b bg-white">
